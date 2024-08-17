@@ -8,6 +8,7 @@ type MyAppsContext = {
   isLoading: boolean;
   myApps: Application[];
   fetchMyApps: () => Promise<Application[] | null>;
+  updateApplicationInState: (app: Application) => void;
 };
 
 const MyAppsContext = createContext<MyAppsContext | undefined>(undefined);
@@ -17,7 +18,6 @@ export function MyAppsProvider({ children }: { children: ReactNode }) {
   const [myApps, setMyApps] = useState<Application[]>([]);
 
   const fetchMyApps = async () => {
-
     setIsLoading(true);
     // get user
     try {
@@ -65,8 +65,18 @@ export function MyAppsProvider({ children }: { children: ReactNode }) {
     }
   };
 
+  function updateApplicationInState(updatedApplication: Application) {
+    setMyApps((prevApplications) =>
+      prevApplications.map((app) =>
+        app.id === updatedApplication.id ? updatedApplication : app
+      )
+    );
+  }
+
   return (
-    <MyAppsContext.Provider value={{ isLoading, myApps, fetchMyApps }}>
+    <MyAppsContext.Provider
+      value={{ isLoading, myApps, fetchMyApps, updateApplicationInState }}
+    >
       {children}
     </MyAppsContext.Provider>
   );

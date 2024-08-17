@@ -7,7 +7,7 @@ import { MyAppsProvider } from "@/hooks/useMyApps";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Application Tracker",
+  title: "AppTrack - Keep Your Job Search on Track",
   description: "Created by Nicholas Hess",
 };
 

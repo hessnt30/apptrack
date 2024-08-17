@@ -20,12 +20,12 @@ export default function SignUpPage() {
       if (isSignUp) {
         const newUser = await signUp(email, password);
         if (newUser) {
-          router.push("/");
+          router.push("/dashboard");
         }
       } else {
         const signedInUser = await signIn(email, password);
         if (signedInUser) {
-          router.push("/");
+          router.push("/dashboard");
         }
       }
     } catch (err) {
