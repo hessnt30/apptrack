@@ -19,7 +19,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <title>My Application Tracker</title>
+        <title>AppTrack - Keep Your Job Search on Track</title>
       </head>
       <body>
         <AuthProvider>

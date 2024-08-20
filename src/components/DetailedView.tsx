@@ -2,7 +2,10 @@ import { Application } from "@/types/types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faStar as regularFaStar } from "@fortawesome/free-regular-svg-icons";
-import { faStar as solidFaStar } from "@fortawesome/free-solid-svg-icons";
+import {
+  faXmark,
+  faStar as solidFaStar,
+} from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useState } from "react";
 import ConfirmDelete from "./ConfirmDelete";
 
@@ -29,10 +32,14 @@ export default function DetailedView({ closeModal, app }: DetailedViewProps) {
       <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-40">
         <div className="bg-gray p-8 rounded-lg shadow-lg w-1/2">
           <div className="flex justify-between">
-            <h1 className="text-2xl font-bold mb-4">{app.title}</h1>
-            <span onClick={closeModal} className="text-lg hover:cursor-pointer">
-              &times;
-            </span>
+            <h1 className="text-2xl mb-4">{app.title}</h1>
+            <button>
+              <FontAwesomeIcon
+                icon={faXmark}
+                onClick={closeModal}
+                className="text-2xl"
+              />
+            </button>
           </div>
           <hr></hr>
           <div className="flex flex-col">

@@ -10,7 +10,7 @@ export default function NavBar() {
   return (
     <nav className="flex justify-between flex-row px-16 pt-8 bg-darkgray">
       <div className="flex flex-row items-center mb-4">
-        <h1 className="text-2xl">AppTrack</h1>
+        <h1 className="text-2xl hover:cursor-pointer">AppTrack</h1>
         <ul className="flex flex-row">
           <li className="nav-item">
             <button>Dashboard</button>

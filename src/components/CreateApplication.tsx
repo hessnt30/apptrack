@@ -3,6 +3,8 @@ import { supabase } from "@/utils/supabaseClient";
 import { useState } from "react";
 import LoadingOverlay from "./LoadingOverlay";
 import { useMyApps } from "@/hooks/useMyApps";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faXmark } from "@fortawesome/free-solid-svg-icons";
 
 type CreateApplicationProps = {
   closeModal: () => void;
@@ -86,10 +88,14 @@ export default function CreateApplication({
       <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
         <div className="bg-gray p-8 rounded-lg shadow-lg w-1/2">
           <div className="flex justify-between">
-            <h1 className="text-2xl font-bold mb-4">New Application</h1>
-            <span onClick={closeModal} className="text-lg hover:cursor-pointer">
-              &times;
-            </span>
+            <h1 className="text-2xl mb-4">New Application</h1>
+            <button>
+              <FontAwesomeIcon
+                icon={faXmark}
+                onClick={closeModal}
+                className="text-2xl"
+              />
+            </button>
           </div>
           <div className="flex items-center justify-center">
             <form

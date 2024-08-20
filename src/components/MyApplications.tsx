@@ -24,6 +24,7 @@ export default function MyApplications({
   const [detailedView, setDetailedView] = useState<ReactElement | null>(null);
 
   useEffect(() => {
+    console.log(myApps);
     fetchMyApps();
   }, []);
 

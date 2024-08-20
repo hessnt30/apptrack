@@ -25,7 +25,7 @@ export default function ApplicationCard({
   return (
     <div
       key={app.id}
-      className="border border-lightgray hover:bg-lightestgray hover:cursor-pointer p-4 mb-4 rounded bg-lightgray"
+      className="border border-lightgray hover:bg-lightestgray hover:cursor-pointer p-4 mb-4 rounded bg-lightgray shadow-lg"
       onClick={() => handleCardClicked(app)}
       title={`${app.title} at ${app.company}`}
       draggable="true"
