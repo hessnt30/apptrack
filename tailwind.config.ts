@@ -21,7 +21,7 @@ const config: Config = {
         lightestgray: "#494949",
         whitegray: "#C8C8C8",
         lightorange: "#902B1A",
-        dijon: "#966823",
+        dijon: "#855712",
         lightbrown: "#785441",
         cloud: "#5B4946",
         grape: "#392A39",

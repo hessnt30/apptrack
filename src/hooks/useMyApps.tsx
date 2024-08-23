@@ -2,7 +2,13 @@
 
 import { Application } from "@/types/types";
 import { supabase } from "@/utils/supabaseClient";
-import { createContext, ReactNode, useContext, useState } from "react";
+import {
+  createContext,
+  ReactNode,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 
 type MyAppsContext = {
   isLoading: boolean;
@@ -15,12 +21,13 @@ const MyAppsContext = createContext<MyAppsContext | undefined>(undefined);
 
 export function MyAppsProvider({ children }: { children: ReactNode }) {
   const [isLoading, setIsLoading] = useState(false);
+  const [unsortedApps, setUnsortedApps] = useState<Application[]>([]);
   const [myApps, setMyApps] = useState<Application[]>([]);
 
   const fetchMyApps = async () => {
     setIsLoading(true);
     // get user
-    if (myApps.length === 0) {
+    if (unsortedApps.length === 0) {
       try {
         const {
           data: { user },
@@ -56,7 +63,7 @@ export function MyAppsProvider({ children }: { children: ReactNode }) {
           return null;
         }
 
-        setMyApps(applications);
+        setUnsortedApps(applications);
         setIsLoading(false);
         return applications;
       } catch (error) {
@@ -66,12 +73,22 @@ export function MyAppsProvider({ children }: { children: ReactNode }) {
       }
     } else {
       setIsLoading(false);
-      return myApps;
+      return unsortedApps;
     }
   };
 
+  useEffect(() => {
+    const appsCopy = unsortedApps;
+    appsCopy.sort((app) => {
+      if (app.is_favorite) return 1;
+      else return 0;
+    });
+
+    setMyApps(appsCopy);
+  }, [unsortedApps]);
+
   function updateApplicationInState(updatedApplication: Application) {
-    setMyApps((prevApplications) =>
+    setUnsortedApps((prevApplications) =>
       prevApplications.map((app) =>
         app.id === updatedApplication.id ? updatedApplication : app
       )
